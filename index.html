@@ -3,88 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiple PDF Viewer</title>
+    <title>PDF Viewer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
         }
-        #pdfContainer {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .pdf-wrapper {
+        iframe, object {
             width: 80%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        iframe {
-            width: 100%;
             height: 500px;
+            margin: 20px 0;
             border: 1px solid black;
-        }
-        button {
-            margin-top: 10px;
-            padding: 5px 10px;
-            cursor: pointer;
-            border: none;
-            background-color: red;
-            color: white;
-            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <h1>Multiple PDF Viewer</h1>
+    <h1>Bharatesh</h1>
 
-    <label for="pdfUpload">Upload PDFs:</label>
-    <input type="file" id="pdfUpload" accept="application/pdf" multiple>
+    <!-- Using iframe -->
+    <h2>PDF 1</h2>
+    <iframe src="pdfs/1 sem shru.pdf"></iframe>
+    <h2>PDF 2</h2>
+    <iframe src="pdfs/Bel.pdf"></iframe>
 
-    <div id="pdfContainer"></div>
+    <h2>PDF 2</h2>
+    <iframe src="pdfs/2 sem shru.pdf"></iframe>
 
-    <script>
-        document.getElementById('pdfUpload').addEventListener('change', function(event) {
-            const files = event.target.files;
-            const pdfContainer = document.getElementById('pdfContainer');
-
-            if (files.length === 0) {
-                alert("No PDFs selected!");
-                return;
-            }
-
-            for (let i = 0; i < files.length; i++) {
-                if (files[i].type === "application/pdf") {
-                    const fileURL = URL.createObjectURL(files[i]);
-
-                    // Create wrapper div for PDF and remove button
-                    const pdfWrapper = document.createElement('div');
-                    pdfWrapper.classList.add('pdf-wrapper');
-
-                    // Create iframe
-                    const pdfFrame = document.createElement('iframe');
-                    pdfFrame.src = fileURL;
-
-                    // Create remove button
-                    const removeButton = document.createElement('button');
-                    removeButton.textContent = "Remove PDF";
-                    removeButton.addEventListener('click', function() {
-                        pdfWrapper.remove();
-                    });
-
-                    // Append elements
-                    pdfWrapper.appendChild(pdfFrame);
-                    pdfWrapper.appendChild(removeButton);
-                    pdfContainer.appendChild(pdfWrapper);
-                } else {
-                    alert(`"${files[i].name}" is not a valid PDF file.`);
-                }
-            }
-        });
-    </script>
+    <!-- Using object -->
+    <h2>PDF 3</h2>
+    <object data="pdfs/3 sem shru.pdf" type="application/pdf">
+        <p>PDF not supported. <a href="pdfs/sample3.pdf">Download PDF</a></p>
+    </object>
+    <h2>PDF 2</h2>
+    <iframe src="pdfs/4 sem shruti.pdf"></iframe>
 
 </body>
 </html>
